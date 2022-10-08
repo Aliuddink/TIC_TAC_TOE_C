@@ -13,7 +13,8 @@ to the open parts of the table so that inputing O's and X's are easier */
 
     char player;
     char change;
-    char entry[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    int turn;
+    char entry[10] = {'0','1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 void board()
 {
@@ -71,20 +72,22 @@ else if(change == '8')    {entry[8] = 'O';}
 else if(change == '9')    {entry[9] = 'O';}
 }
     
-void switch_turn(char *turn)            // this will switch the turn
+void switch_turn(int turn)            // this will switch the turn
 {
-   if (*turn == 'X') 
+   if (turn == 1) 
    {
-    *turn = 'O';
    printf("\n It is the first players turn. \n input a entry to input value \n");
    change = getchar();
-   changeEntryP2();
-   }else 
+   turn++;
+   turn;
+   changeEntryP2(change);
+   }else
    {
-    *turn = 'X';
     printf("\n It is the second players or the computers turn. \n input a entry to input value \n");
     change = getchar();
-    changeEntryP1();   
+      turn--;
+    changeEntryP1(change);   
+    turn;
    }
 }
 
@@ -98,13 +101,13 @@ void opponentPlayer(int change)
 void opponentComputer()
 {
     printf("\nthe opponent has been confirmed to be the computer \n");
-    switch_turn();
+    switch_turn(change);
 
 }
 
 /* write a function that checks the win conditions if a row, column, or diagnal is 
 filled with the same caracters */
-bool WinConditions (char entry[]) 
+bool WinConditions () 
 {
     bool win = false;
 
@@ -113,19 +116,25 @@ bool WinConditions (char entry[])
     {
         if (entry[1] == entry[2] == entry[3] )
         {
-            win == true; 
+            win == true;
+            printf ("You won the game 1");
+            exit(0);; 
         }
     } else if (entry[4] != '4' ) 
     {
                 if (entry[4] == entry[5] == entry[6] )
         {
-            win == true; 
+            win == true;
+            printf ("You won the game 2");
+            exit(0); 
         }
     } else if (entry[7] != '7')
     {
                 if (entry[7] == entry[8] == entry[9] )
         {
-            win == true; 
+            win == true;
+            printf ("You won the game 3");
+            exit(0);
         }
     }
     // columns if the entries 1,4,7     2,5,8,     3,6,9 are full of the same char that char wins
@@ -133,19 +142,25 @@ bool WinConditions (char entry[])
     {
         if (entry[1] == entry[4] == entry[7] )
         {
-            win == true; 
+            win == true;
+            printf ("You won the game 4"); 
+            exit(0);
         }
     } else if (entry[2] != '2' ) 
     {
                 if (entry[2] == entry[5] == entry[8] )
         {
-            win == true; 
+            win == true;
+            printf ("You won the game 5");
+            exit(0); 
         }
     } else if (entry[3] != '3')
     {
                 if (entry[3] == entry[6] == entry[9] )
         {
-            win == true; 
+            win == true;
+            printf ("You won the game 6");
+            exit(0);
         }
     }
     // diagnal if the entries 1,5,9     3,5,7 are full of the same char that char wins
@@ -153,35 +168,41 @@ bool WinConditions (char entry[])
     {
         if (entry[1] == entry[5] == entry[9] )
         {
-            win == true; 
+            win == true;
+            printf ("You won the game 7");
+            //exit(0);
         }
     } else if (entry[3] != '3')
     {
                 if (entry[3] == entry[5] == entry[7] )
         {
-            win == true; 
+            win == true;
+            printf ("You won the game 8");
+            exit(0);
         }
     }
 
-    return win;
+    return false;
 }
 
 /* write a function that checks if all of the slots are filled up. if all the slots are 
 filled up and none of the win conditions are met print out "draw" */
 
-    bool Draw(char entry[]) 
+    bool Draw() 
     {
         bool entryFull = false;
 
         if (entry[1] != '1'&& entry[2] != '2'&& entry[3] != '3' && entry[4] != '4' &&  entry[5] != '5' && entry[6] != '6' && entry[7] != '7' && entry[8] != '8' && entry[9] != '9')
         {
             entryFull = true;
+            printf ("\n the game is a draw");
+            exit(0);
         }  
 
 
         if (entryFull = true)
         {   
-       // WinConditions();
+        WinConditions();
         }
     }
 
@@ -203,11 +224,20 @@ if(player == '1' ) {
     opponentComputer();
 }
 if(player == '2' ) {
-    opponentPlayer();
+    opponentPlayer(change);
 }
 
-board();
-WinConditions();
-Draw();
-switch_turn();
+do  {
+    switch_turn(turn);
+    board(); 
+    switch_turn(turn);
+    
+    }
+ while 
+    (WinConditions() == false && Draw() == false);
+  
+  printf ("this is the end of the game");
+  
+  exit(0);
+
 }          
