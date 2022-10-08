@@ -12,14 +12,14 @@ will lead to seperate sequences for each option. */
 to the open parts of the table so that inputing O's and X's are easier */
 
     char player;
-    char square[10] = {'0','1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    char entry[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
                     
 
 
 void board()
 {
-    printf("\n\n\tTic Tac Toe\n\n");
+    printf("\n\tTic Tac Toe\n\n");
 
     if (player == '1'){
     printf("Player 1 (X)  -  Computer (O)\n\n\n");
@@ -29,17 +29,17 @@ void board()
     }
 
     printf("     |     |     \n");
-    printf("  %c  |  %c  |  %c \n", square[1], square[2], square[3]);
+    printf("  %c  |  %c  |  %c \n", entry[1], entry[2], entry[3]);
 
     printf("_____|_____|_____\n");
     printf("     |     |     \n");
 
-    printf("  %c  |  %c  |  %c \n", square[4], square[5], square[6]);
+    printf("  %c  |  %c  |  %c \n", entry[4], entry[5], entry[6]);
 
     printf("_____|_____|_____\n");
     printf("     |     |     \n");
 
-    printf("  %c  |  %c  |  %c \n", square[7], square[8], square[9]);
+    printf("  %c  |  %c  |  %c \n", entry[7], entry[8], entry[9]);
 
     printf("     |     |     \n\n");
 }
@@ -50,19 +50,96 @@ the player and/or computer picks*/
 
 void opponentPlayer()
 {
-    printf("the opponent has been confirmed to be another player");
+    printf("\n the opponent has been confirmed to be another player \n");
 }
 
 void opponentComputer()
 {
-    printf("the opponent has been confirmed to be the computer");
+    printf("\nthe opponent has been confirmed to be the computer \n");
 }
 
 /* write a function that checks the win conditions if a row, column, or diagnal is 
 filled with the same caracters */
+bool WinConditions (char entry[]) 
+{
+    bool win = false;
+
+    // rows if the entries 1,2,3     4,5,6,     7,8,9 are full of the same char that char wins
+    if (entry[1] != '1' )    
+    {
+        if (entry[1] == entry[2] == entry[3] )
+        {
+            win == true; 
+        }
+    } else if (entry[4] != '4' ) 
+    {
+                if (entry[4] == entry[5] == entry[6] )
+        {
+            win == true; 
+        }
+    } else if (entry[7] != '7')
+    {
+                if (entry[7] == entry[8] == entry[9] )
+        {
+            win == true; 
+        }
+    }
+    // columns if the entries 1,4,7     2,5,8,     3,6,9 are full of the same char that char wins
+        if (entry[1] != '1' )    
+    {
+        if (entry[1] == entry[4] == entry[7] )
+        {
+            win == true; 
+        }
+    } else if (entry[2] != '2' ) 
+    {
+                if (entry[2] == entry[5] == entry[8] )
+        {
+            win == true; 
+        }
+    } else if (entry[3] != '3')
+    {
+                if (entry[3] == entry[6] == entry[9] )
+        {
+            win == true; 
+        }
+    }
+    // diagnal if the entries 1,5,9     3,5,7 are full of the same char that char wins
+        if (entry[1] != '1' )    
+    {
+        if (entry[1] == entry[5] == entry[9] )
+        {
+            win == true; 
+        }
+    } else if (entry[3] != '3')
+    {
+                if (entry[3] == entry[5] == entry[7] )
+        {
+            win == true; 
+        }
+    }
+
+    return win;
+}
 
 /* write a function that checks if all of the slots are filled up. if all the slots are 
 filled up and none of the win conditions are met print out "draw" */
+
+    bool Draw(char entry[]) 
+    {
+        bool entryFull = false;
+
+        if (entry[1] != '1', entry[2] != '2', entry[3] != '3', entry[4] != '4',  entry[5] != '5', entry[6] != '6', entry[7] != '7', entry[8] != '8', entry[9] != '9')
+        {
+            entryFull = true;
+        }  
+
+
+        if (entryFull = true)
+        {   
+       // WinConditions();
+        }
+    }
 
 
 /*write a algorithym for the computer to check if a spot is empty and input a move
@@ -86,6 +163,7 @@ if(player == '2' ) {
 }
 
 board();
+//WinConditions();
 
 
 }          
