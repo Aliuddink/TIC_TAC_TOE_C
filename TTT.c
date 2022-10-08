@@ -14,9 +14,6 @@ to the open parts of the table so that inputing O's and X's are easier */
     char player;
     char entry[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
-                    
-
-
 void board()
 {
     printf("\n\tTic Tac Toe\n\n");
@@ -48,14 +45,60 @@ void board()
 /* write a function to add in the X's and O's into the respective slots that
 the player and/or computer picks*/
 
-void opponentPlayer()
+    int change;
+    void changeEntryP1(int change){     
+if(change == 1)    { entry[1] = 'X';} 
+else if(change == 2)    {entry[2] = 'X';}
+else if(change == 3)    {entry[3] = 'X';}   
+else if(change == 4)    {entry[4] = 'X';}
+else if(change == 5)    {entry[5] = 'X';}
+else if(change == 6)    {entry[6] = 'X';}
+else if(change == 7)    {entry[7] = 'X';}
+else if(change == 8)    {entry[8] = 'X';}
+else if(change == 9)    {entry[9] = 'X';}
+}
+
+    void changeEntryP2(int change){         // this will be adapted for the computer option as well
+if(change == 1)    { entry[1] = 'O';} 
+else if(change == 2)    {entry[2] = 'O';}
+else if(change == 3)    {entry[3] = 'O';}   
+else if(change == 4)    {entry[4] = 'O';}
+else if(change == 5)    {entry[5] = 'O';}
+else if(change == 6)    {entry[6] = 'O';}
+else if(change == 7)    {entry[7] = 'O';}
+else if(change == 8)    {entry[8] = 'O';}
+else if(change == 9)    {entry[9] = 'O';}
+}
+    
+void switch_turn(char *turn)            // this will switch the turn
+{
+   if (*turn == 'X') 
+   {
+    *turn = 'O';
+   printf("\n It is the first players turn. \n input a entry to input value \n");
+   change = getchar();
+   changeEntryP2();
+   }else 
+   {
+    *turn = 'X';
+    printf("\n It is the second players or the computers turn. \n input a entry to input value \n");
+    change = getchar();
+    changeEntryP1();   
+   }
+}
+
+void opponentPlayer(int change)
 {
     printf("\n the opponent has been confirmed to be another player \n");
+
+
 }
 
 void opponentComputer()
 {
     printf("\nthe opponent has been confirmed to be the computer \n");
+    switch_turn();
+
 }
 
 /* write a function that checks the win conditions if a row, column, or diagnal is 
@@ -129,7 +172,7 @@ filled up and none of the win conditions are met print out "draw" */
     {
         bool entryFull = false;
 
-        if (entry[1] != '1', entry[2] != '2', entry[3] != '3', entry[4] != '4',  entry[5] != '5', entry[6] != '6', entry[7] != '7', entry[8] != '8', entry[9] != '9')
+        if (entry[1] != '1'&& entry[2] != '2'&& entry[3] != '3' && entry[4] != '4' &&  entry[5] != '5' && entry[6] != '6' && entry[7] != '7' && entry[8] != '8' && entry[9] != '9')
         {
             entryFull = true;
         }  
@@ -163,7 +206,9 @@ if(player == '2' ) {
 }
 
 board();
-//WinConditions();
+WinConditions();
+Draw();
+switch_turn();
 
 
 }          
