@@ -12,6 +12,7 @@ will lead to seperate sequences for each option. */
 to the open parts of the table so that inputing O's and X's are easier */
 
     char player;
+    char change;
     char entry[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 void board()
@@ -45,29 +46,29 @@ void board()
 /* write a function to add in the X's and O's into the respective slots that
 the player and/or computer picks*/
 
-    int change;
+    
     void changeEntryP1(int change){     
-if(change == 1)    { entry[1] = 'X';} 
-else if(change == 2)    {entry[2] = 'X';}
-else if(change == 3)    {entry[3] = 'X';}   
-else if(change == 4)    {entry[4] = 'X';}
-else if(change == 5)    {entry[5] = 'X';}
-else if(change == 6)    {entry[6] = 'X';}
-else if(change == 7)    {entry[7] = 'X';}
-else if(change == 8)    {entry[8] = 'X';}
-else if(change == 9)    {entry[9] = 'X';}
+if(change == '1')    { entry[1] = 'X';} 
+else if(change == '2')    {entry[2] = 'X';}
+else if(change == '3')    {entry[3] = 'X';}   
+else if(change == '4')    {entry[4] = 'X';}
+else if(change == '5')    {entry[5] = 'X';}
+else if(change == '6')    {entry[6] = 'X';}
+else if(change == '7')    {entry[7] = 'X';}
+else if(change == '8')    {entry[8] = 'X';}
+else if(change == '9')    {entry[9] = 'X';}
 }
 
     void changeEntryP2(int change){         // this will be adapted for the computer option as well
-if(change == 1)    { entry[1] = 'O';} 
-else if(change == 2)    {entry[2] = 'O';}
-else if(change == 3)    {entry[3] = 'O';}   
-else if(change == 4)    {entry[4] = 'O';}
-else if(change == 5)    {entry[5] = 'O';}
-else if(change == 6)    {entry[6] = 'O';}
-else if(change == 7)    {entry[7] = 'O';}
-else if(change == 8)    {entry[8] = 'O';}
-else if(change == 9)    {entry[9] = 'O';}
+if(change == '1')    { entry[1] = 'O';} 
+else if(change == '2')    {entry[2] = 'O';}
+else if(change == '3')    {entry[3] = 'O';}   
+else if(change == '4')    {entry[4] = 'O';}
+else if(change == '5')    {entry[5] = 'O';}
+else if(change == '6')    {entry[6] = 'O';}
+else if(change == '7')    {entry[7] = 'O';}
+else if(change == '8')    {entry[8] = 'O';}
+else if(change == '9')    {entry[9] = 'O';}
 }
     
 void switch_turn(char *turn)            // this will switch the turn
@@ -209,6 +210,4 @@ board();
 WinConditions();
 Draw();
 switch_turn();
-
-
 }          
